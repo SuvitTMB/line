@@ -149,6 +149,7 @@
   }
 
   function ClickNumber(x) {
+      dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
       db.add({
         LineID : alineID,
         LineName : aLinename,

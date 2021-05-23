@@ -138,6 +138,7 @@
     aPicture = profile.pictureUrl;
     alineID = profile.userId;
     aLinename = profile.displayName;
+    alert(aLinename);
   	SaveData();
   }
 
@@ -166,7 +167,7 @@ function CheckIn() {
   SaveData();
 }
 */
-  async function SaveData() {
+  function SaveData() {
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
     if(ECheckIn==0) {
       dbLogin.add({
@@ -177,13 +178,14 @@ function CheckIn() {
         TimeStart : dateString,
         TimeUse : dateString
       }); 
+  	  alert("New");
   	} else {
       dbLogin.doc(Eid).update({
         TimeUse : dateString,
         TimeJoin : ETimeUse
       });
+  	  alert("Old");
   	}
-  	alert("Check");
   }
 
 

@@ -120,7 +120,7 @@
     }
   }
   main()
-  CheckIn()
+  //CheckIn()
 
 
   async function getUserProfile() {
@@ -150,6 +150,7 @@ var ETimeJoin = 0;
 var ETimeUse = 1;
 var ECheckIn = 0;
 
+/*
 
 function CheckIn() {
   dbQuiz.where('LineID','==',alineID).get().then((snapshot)=> {
@@ -164,8 +165,8 @@ function CheckIn() {
   });
   SaveData();
 }
-
-
+*/
+SaveData();
   function SaveData() {
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
     if(ECheckIn==0) {

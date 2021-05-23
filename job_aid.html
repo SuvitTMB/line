@@ -91,14 +91,7 @@
   var aPicture = "";
   var alineID = "";
   var aLinename = "";
-  var Eid = "";
-  var ELoginStatus = 0;
-  var ETimeStart = 0;
-  var ETimeJoin = 0;
-  var ETimeUse = 1;
-  var ECheckIn = 0;
   var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
-
 
   var firebaseConfig = {
     apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
@@ -112,7 +105,6 @@
 
   firebase.initializeApp(firebaseConfig);
   var db = firebase.firestore().collection("logopenbook");
-  //var dbLogin = firebase.firestore().collection("Login");
 
 /*
 */
@@ -127,7 +119,6 @@
     }
   }
   main()
-  //CheckIn()
 
 
   async function getUserProfile() {
@@ -146,51 +137,6 @@
       external: true     
     })
   }
-
-
-
-/*
-
-function CheckIn() {
-  dbQuiz.where('LineID','==',alineID).get().then((snapshot)=> {
-    snapshot.forEach(doc=> {
-	  Eid = doc.id;
-	  ELoginStatus = doc.data().LoginStatus;
-	  ETimeStart = dateString;
-	  ETimeJoin = dateString;
-	  ETimeUse = doc.data().TimeUse + 1;
-	  ECheckIn = 1;
-	});
-  });
-  SaveData();
-}
-*/
-
-
-  //SaveData();
-/*
-  async function SaveData() {
-  	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
-    if(ECheckIn==0) {
-      dbLogin.add({
-        LineID : alineID,
-        LineName : aLinename,
-        //LinePicture : aPicture,
-        LoginStatus : ECheckIn,
-        TimeStart : dateString,
-        TimeUse : dateString
-      }); 
-  	  alert("New");
-  	} else {
-      dbLogin.doc(Eid).update({
-        TimeUse : dateString,
-        TimeJoin : ETimeUse
-      });
-  	  alert("Old");
-  	}
-  }
-*/
-
 
   function ClickNumber(x) {
       dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
@@ -221,8 +167,8 @@ function CheckIn() {
   <main id="main">
     <section id="team" class="team section-bg" style="background-color: #e1e1e1;min-height:450px;">
       <div class="container" style="margin-top:-20px;">
-      	<div style="background:#fff;">
-      	<div><img src="./assets/img/Job_aid@@@.jpg" style="width:100%;"></div>
+        <div style="background:#fff;">
+        <div><img src="./assets/img/Job_aid@@@.jpg" style="width:100%;"></div>
         <div class="section-title" data-aos="fade-up"  style="background:#fff;border:4px solid #0050f0;border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
             <center>
               <div style="padding:15px;color:#333;">"<b>คู่มือช่วยจำ V1.0</b>" การปฏิบัติงานในแต่ละธุรกรรม<br>คลิกที่เมนูเพื่อเลือกดูข้อมูล</div>
@@ -242,7 +188,7 @@ function CheckIn() {
               <div style="padding:15px; text-align: left;font-size:11px; color:#ff0000;">หมายเหตุ: คู่มือฉบับย่อสำหรับใช้ภายในธนาคารเท่านั้น ห้ามเผยแพร่ คัดลอก หรือส่งต่อให้แก่บุคคลภายนอกโดยเด็ดขาด หากพนักงานผู้ใดฝ่าฝืน พนักงานผู้นั้นถูกพิจารณาโทษทางวินัย ตามระเบียบของธนาคารต่อไป</div>
             </center>
         </div>
-    	</div>
+      </div>
       </div>
     </section>
   </main><!-- End #main -->

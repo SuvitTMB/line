@@ -91,7 +91,14 @@
   var aPicture = "";
   var alineID = "";
   var aLinename = "";
+  var Eid = "";
+  var ELoginStatus = 0;
+  var ETimeStart = 0;
+  var ETimeJoin = 0;
+  var ETimeUse = 1;
+  var ECheckIn = 0;
   var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+
 
   var firebaseConfig = {
     apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
@@ -131,7 +138,7 @@
     aPicture = profile.pictureUrl;
     alineID = profile.userId;
     aLinename = profile.displayName;
-  	//SaveData();
+  	SaveData();
   }
 
   function openWindow() {
@@ -142,13 +149,6 @@
   }
 
 
-
-var Eid = "";
-var ELoginStatus = 0;
-var ETimeStart = 0;
-var ETimeJoin = 0;
-var ETimeUse = 1;
-var ECheckIn = 0;
 
 /*
 
@@ -166,8 +166,7 @@ function CheckIn() {
   SaveData();
 }
 */
-SaveData();
-  function SaveData() {
+  async function SaveData() {
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
     if(ECheckIn==0) {
       dbLogin.add({

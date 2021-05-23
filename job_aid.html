@@ -130,7 +130,7 @@
     aPicture = profile.pictureUrl;
     alineID = profile.userId;
     aLinename = profile.displayName;
-  	CheckIn();
+  	SaveData();
   }
 
   function openWindow() {
@@ -172,13 +172,12 @@ function CheckIn() {
         LoginStatus : ECheckIn,
         TimeStart : dateString,
         TimeUse : dateString
-      });
+      }); 
+  	} else {
       dbLogin.doc(Eid).update({
         TimeUse : dateString,
         TimeJoin : ETimeUse
       });
-  	} else {
-  		alert("ข้อมูลคุณไม่ถูกต้อง");
   	}
   }
 

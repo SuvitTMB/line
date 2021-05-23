@@ -32,16 +32,12 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/ekachon.css">
   <link rel="stylesheet" type="text/css" href="css/button.css">
-
-  <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Flattern - v2.2.0
-  * Template URL: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.8.1/sdk.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
   <style type="text/css">
     .iconweb {
       font-size:12px;margin-left:10px;width:30%;height:100px;float: left;color:#ffff00;text-align: center;
@@ -57,6 +53,7 @@
 <body style="background-color: #0056ff;margin: 0;" >
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div style="display: none;"><p id="isLoggedIn"></p><p id="userId"></p><p id="pictureUrl"></p><p id="displayName"></p></div>
 
   <div class="navbar">
     <div>
@@ -89,73 +86,114 @@
       </nav>
     </div>
   </header>
-  <!--
-  -->
 
+<script type="text/javascript">
+  var aPicture = "";
+  var alineID = "";
+  var aLinename = "";
+  var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
+    authDomain: "retailproject-6f4fc.firebaseapp.com",
+    projectId: "retailproject-6f4fc",
+    storageBucket: "retailproject-6f4fc.appspot.com",
+    messagingSenderId: "653667385625",
+    appId: "1:653667385625:web:a5aed08500de80839f0588",
+    measurementId: "G-9SKTRHHSW9"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore().collection("logopenbook");
+
+/*
+  async function main() {
+    await liff.init({ liffId: "1655966947-5rJYErwX" });
+    document.getElementById("isLoggedIn").append(liff.isLoggedIn());
+    if(liff.isLoggedIn()) {
+      getUserProfile();
+    } else {
+      liff.login();
+    }
+  }
+  main()
+*/
+
+  async function main() {
+    await liff.init({ liffId: "1655869884-5k4ebZo1" })
+    document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+    if(liff.isLoggedIn()) {
+      getUserProfile()
+    } else {
+      liff.login()
+    }
+  }
+  main()
+
+
+  async function getUserProfile() {
+    var profile = await liff.getProfile();
+    document.getElementById("pictureUrl").src = profile.pictureUrl
+    document.getElementById("userId").append(profile.userId)
+    document.getElementById("displayName").append(profile.displayName)
+    aPicture = profile.pictureUrl;
+    alineID = profile.userId;
+    aLinename = profile.displayName;
+  }
+
+  function openWindow() {
+    liff.openWindow({
+      url: "https://line.me",
+      external: true     
+    })
+  }
+
+  function ClickNumber(x) {
+      dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+      db.add({
+        LineID : alineID,
+        LineName : aLinename,
+        OpenNumber : x,
+        DateTimetoOpen : dateString,
+        LinePicture : aPicture   
+      });   
+      if(x==1) {
+        window.open('https://drive.google.com/file/d/163CDM4I2esTnhswP2AsJo1-UNc9zTtRC/view?usp=sharing');
+      } else if(x==2) {
+        window.open('https://drive.google.com/file/d/1EMPObj9HBG-SUicYnu0YgWJKul5BqU-P/view?usp=sharing');
+      } else if(x==3) {
+        window.open('https://drive.google.com/file/d/1S15WQxLwmd11jF95yDdcGMWY3h1qAWi1/view?usp=sharing');
+      } else if(x==4) {
+        window.open('https://drive.google.com/file/d/1zTzDWrAks4ivcHy5ViLIQVPO06SuHJlm/view?usp=sharing');
+      } else if(x==5) {
+        window.open('https://drive.google.com/file/d/1m_rZtUDAs_84k2BlWjRkc6mcKh3ikjgy/view?usp=sharing');
+      } else if(x==6) {
+        window.open('https://drive.google.com/file/d/1zsRKk40jHwOV8I-rBU58D40RL-LSBbQx/view?usp=sharing');
+      }  
+  }
+
+</script>
 
   <main id="main">
     <section id="team" class="team section-bg" style="background-color: #0056ff;min-height:450px;">
       <div class="container">
-
-<!--
-        <div style="margin-top:-30px;">
-          <div class="btn-t2" style="float: left;">เรื่องเล่า 3 นาที</div>
-          <div class="btn-t2" style="float: left;" onclick="window.location.href = 'mockrun.html';">Mock Run #3</div>
-          <div class="btn-t2" onclick="window.location.href = 'mockrun.html?#mockrun2';">Mock Run #2</div>
-        </div>
-        <div class="clr"></div>#ttbมาแล้ว วันนี้! ทีเอ็มบีและธนชาต เปลี่ยนเป็น ttb เปลี่ยน... เพื่อให้ชีวิตคุณดีขึ้น >> คลิก
--->
         <div class="section-title" data-aos="fade-up"  style="margin-top:10px;">
-          <!--
-          <div style="color:#ffffff;font-size:18px;margin-top:-20px;">คู่มือช่วยจำ</div>
-          <div style="color:#ffffff;font-size:15px;">การปฏิบัติงานสาขาในแต่ละธุรกรรม</div>
-          -->
           <div style="margin-top:-55px;padding:15px 0px 15px 0px;background-image: url(./assets/img/Job_aid@.jpg);background-size: cover; background-size: 100% 100%;width:100%;height: 670px;background-position: top left;background-repeat: no-repeat;">
             <center>
               <div style="margin:370px 10px 0 10px;background: #f68b1f;height:210px;border-radius: 15px;padding-top:5px;line-height:16px;position: absolute;">
+                <div class="iconweb" onclick="ClickNumber(1)" title="คลิกดูรายละเอียด"><div><img src="./assets/img/icon-01.png" style="width:60%;"></div><div>KYC และการ<br>ยืนยันตัวตนลูกค้า</div></div>
+                <div class="iconweb" onclick="ClickNumber(2)"><div><img src="./assets/img/icon-02.png" style="width:60%;"></div><div>ธุรกรรมด้านบัญชี<br>และเปิด ttb touch</div></div>
 
-                <div class="iconweb" onclick="window.open('https://drive.google.com/file/d/1ElqXGi9WQCmV5nkI6lPMMaz43EfocbS1/view?usp=sharing');" title="คลิกดูรายละเอียด"><div><img src="./assets/img/icon-01.png" style="width:60%;"></div><div>KYC และการ<br>ยืนยันตัวตนลูกค้า</div></div>
+                <div class="iconweb" onclick="ClickNumber(3)"><div><img src="./assets/img/icon-03.png" style="width:60%;"></div><div>การรู้จักลูกค้า<br>บน CRM</div></div>
 
-                <div class="iconweb" onclick="window.open('http://www.google.com');"><div><img src="./assets/img/icon-02.png" style="width:60%;"></div><div>ธุรกรรมด้านบัญชี<br>และเปิด ttb touch</div></div>
+                <div class="iconweb" onclick="ClickNumber(4)"><div><img src="./assets/img/icon-04.png" style="width:60%;"></div><div>ธุรกรรมฝาก/<br>ถอน/โอน/ชำระ</div></div>
 
-                <div class="iconweb" onclick="window.open('http://www.google.com');"><div><img src="./assets/img/icon-03.png" style="width:60%;"></div><div>การรู้จักลูกค้า<br>บน CRM</div></div>
+                <div class="iconweb" onclick="ClickNumber(5)"><div><img src="./assets/img/icon-05.png" style="width:60%;"></div><div>ธุรกรรม<br>ด้านอื่นๆ</div></div>
 
-                <div class="iconweb" onclick="window.open('http://www.google.com');"><div><img src="./assets/img/icon-04.png" style="width:60%;"></div><div>ธุรกรรมฝาก/<br>ถอน/โอน/ชำระ</div></div>
-
-                <div class="iconweb" onclick="window.open('http://www.google.com');"><div><img src="./assets/img/icon-05.png" style="width:60%;"></div><div>ธุรกรรม<br>ด้านอื่นๆ</div></div>
-
-                <div class="iconweb" onclick="window.open('http://www.google.com');"><div><img src="./assets/img/icon-06.png" style="width:60%;"></div><div>ธุรกรรมทาง<br>ด้านกองทุน</div></div>
-
-
-
+                <div class="iconweb" onclick="ClickNumber(6)"><div><img src="./assets/img/icon-06.png" style="width:60%;"></div><div>ธุรกรรมทาง<br>ด้านกองทุน</div></div>
               </div>
-
-
-
-
-
-
-              <!--
-            <div style="padding:10px;"><img src="./assets/img/Job_aid@.jpg" style="width:100%;border-radius: 10px;"></div>
-          -->
             </center>
           </div>
-
-          <!--
-          <div style="color:#ffff00;font-size:15px;margin-top:30px;">เรื่องเล่า 3 นาทีกับ CEO ตอน ประกาศชื่อธนาคารใหม่</div>
-          <div style="padding:15px 0px 15px 0px;">
-            <center>
-            <video width="95%" controls="controls">
-              <source src="./vdo/CEO3MinEp5.mp4" type="video/mp4">
-            </video>
-            </center>
-          </div>
-          <div style="color:#ffffff;font-size:14px;">
-            คุณปิติ ตัณฑเกษม ประธานเจ้าหน้าที่บริหาร<br>
-            แจ้งชื่อธนาคารใหม่ และบอกเล่าเบื้องหลังที่มาของชื่อ<br>
-            ที่รวมพวกเราทุกคนเป็นหนึ่งทีมเดียวกัน
-          </div>
-          -->
         </div>
       </div>
     </section>

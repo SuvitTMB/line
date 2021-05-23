@@ -105,6 +105,7 @@
 
   firebase.initializeApp(firebaseConfig);
   var db = firebase.firestore().collection("logopenbook");
+  var dbLogin = firebase.firestore().collection("Login");
 
 /*
 */
@@ -118,7 +119,8 @@
       liff.login()
     }
   }
-  main()
+  main();
+  CheckIn();
 
 
   async function getUserProfile() {
@@ -137,6 +139,50 @@
       external: true     
     })
   }
+
+
+
+var Eid = "";
+var ELoginStatus = 0;
+var ETimeStart = 0;
+var ETimeJoin = 0;
+var ETimeUse = 0;
+var ECheckIn = 0;
+
+function CheckIn() {
+	snapshot.forEach(doc=> {
+	  Eid = doc.id;
+	  ELoginStatus = doc.data().LoginStatus;
+	  ETimeStart = dateString;
+	  ETimeJoin = dateString;
+	  ETimeUse = doc.data().TimeUse + 1;
+	  ECheckIn = 1;
+	});
+	SaveData();
+}
+
+
+  function SaveData() {
+  	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+    if(ECheckIn==0) {
+      dbLogin.add({
+        LineID : alineID,
+        LineName : aLinename,
+        LinePicture : aPicture,
+        LoginStatus : ECheckIn,
+        TimeStart : new Date(),
+        TimeUse : new Date()
+      });
+      dbLogin.doc(Eid).update({
+        TimeUse : new Date()
+        TimeJoin : ETimeUse
+      });
+  	} else {
+  		alert("ข้อมูลคุณไม่ถูกต้อง");
+  	}
+  }
+
+
 
   function ClickNumber(x) {
       dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });

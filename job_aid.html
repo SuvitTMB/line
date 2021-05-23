@@ -146,7 +146,7 @@ var Eid = "";
 var ELoginStatus = 0;
 var ETimeStart = 0;
 var ETimeJoin = 0;
-var ETimeUse = 0;
+var ETimeUse = 1;
 var ECheckIn = 0;
 
 function CheckIn() {
@@ -174,7 +174,7 @@ function CheckIn() {
         TimeUse : new Date()
       });
       dbLogin.doc(Eid).update({
-        TimeUse : new Date()
+        TimeUse : new Date(),
         TimeJoin : ETimeUse
       });
   	} else {

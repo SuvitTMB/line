@@ -149,8 +149,10 @@ var ETimeJoin = 0;
 var ETimeUse = 1;
 var ECheckIn = 0;
 
+
 function CheckIn() {
-	snapshot.forEach(doc=> {
+  dbQuiz.where('LineID','==',alineID).get().then((snapshot)=> {
+    snapshot.forEach(doc=> {
 	  Eid = doc.id;
 	  ELoginStatus = doc.data().LoginStatus;
 	  ETimeStart = dateString;
@@ -158,6 +160,7 @@ function CheckIn() {
 	  ETimeUse = doc.data().TimeUse + 1;
 	  ECheckIn = 1;
 	});
+  });
 }
 
 

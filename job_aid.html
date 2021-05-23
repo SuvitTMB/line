@@ -119,7 +119,8 @@
       liff.login()
     }
   }
-  main();
+  main()
+  CheckIn()
 
 
   async function getUserProfile() {
@@ -130,7 +131,7 @@
     aPicture = profile.pictureUrl;
     alineID = profile.userId;
     aLinename = profile.displayName;
-  	SaveData();
+  	//SaveData();
   }
 
   function openWindow() {
@@ -161,6 +162,7 @@ function CheckIn() {
 	  ECheckIn = 1;
 	});
   });
+  SaveData();
 }
 
 

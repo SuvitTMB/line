@@ -122,7 +122,6 @@
     document.getElementById("isLoggedIn").append(liff.isLoggedIn())
     if(liff.isLoggedIn()) {
       getUserProfile()
-  	  SaveData()
     } else {
       liff.login()
     }
@@ -167,7 +166,11 @@ function CheckIn() {
   SaveData();
 }
 */
-  function SaveData() {
+
+
+  SaveData();
+
+  async function SaveData() {
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
     if(ECheckIn==0) {
       dbLogin.add({

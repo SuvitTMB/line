@@ -170,11 +170,11 @@ function CheckIn() {
         LineName : aLinename,
         LinePicture : aPicture,
         LoginStatus : ECheckIn,
-        TimeStart : new Date(),
-        TimeUse : new Date()
+        TimeStart : dateString,
+        TimeUse : dateString
       });
       dbLogin.doc(Eid).update({
-        TimeUse : new Date(),
+        TimeUse : dateString,
         TimeJoin : ETimeUse
       });
   	} else {

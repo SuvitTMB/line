@@ -144,19 +144,20 @@
   }
 
 
+  var Eids = "";
   async function CheckLocked() {
   	var ELineID = alineID;
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
     dbLogin.where('LineID','==',ELineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
-		Eid = doc.id;
+		Eids = doc.id;
 		ETimeJoin = (doc.data().TimeJoin)+1;
-		//alert(Eid);
+		alert(Eid);
       });
   	});
-  	alert(alineID+" -- "+ETimeJoin+ " --|" +Eid+"|--");
+  	alert(alineID+" -- "+ETimeJoin+ " --|" +Eids+"|--");
   	if(Eid!="") {
-      dbLogin.doc(Eid).update({
+      dbLogin.doc(Eids).update({
         TimeUse : dateString,
         TimeJoin : ETimeUse
       });

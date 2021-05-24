@@ -145,8 +145,8 @@
 
 
   function CheckLocked() {
-  	alert(alineID);
-    dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {
+  	var ELineID = alineID;
+    dbLogin.where('LineID','==',ELineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
 		Eid = doc.id;
 		alert(Eid);

@@ -129,6 +129,7 @@
     aPicture = profile.pictureUrl;
     alineID = profile.userId;
     aLinename = profile.displayName;
+    CheckLocked();
   }
 
   function openWindow() {
@@ -137,6 +138,13 @@
       external: true     
     })
   }
+
+
+  function CheckLocked() {
+  	alert(alineID);
+  }
+
+
 
   function ClickNumber(x) {
       dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });

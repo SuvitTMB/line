@@ -105,6 +105,7 @@
 
   firebase.initializeApp(firebaseConfig);
   var db = firebase.firestore().collection("logopenbook");
+  var dbLogin = firebase.firestore().collection("Login");
 
 /*
 */
@@ -141,17 +142,15 @@
 
 
   function CheckLocked() {
-  	alert(alineID);
+    dbQuizlog.where('dbLogin','==',alineID).get().then((snapshot)=> {
+      snapshot.forEach(doc=> {
+	  	alert(alineID);
+      });
+    });
   }
 
 
 /*
-    dbQuizlog.where('CheckQuizID','==',QuizGameID).get().then((snapshot)=> {
-      snapshot.forEach(doc=> {
-        zCheckID = 1;
-        alert("คุณได้ทำชุดทดสอบนี้ไปแล้ว");
-      });
-    });
 */
 
   function ClickNumber(x) {

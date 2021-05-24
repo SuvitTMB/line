@@ -144,18 +144,18 @@
   }
 
 
-  function CheckLocked() {
+  async function CheckLocked() {
   	var ELineID = alineID;
     dbLogin.where('LineID','==',ELineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
 		Eid = doc.id;
+		ETimeJoin = (doc.data().TimeJoin)+1;
 		alert(Eid);
-		//ETimeJoin = (doc.data().TimeJoin)+1;
       });
   	});
   	alert(alineID+" -- "+ETimeJoin+ " --|" +Eid+"|--");
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
-  	if(ETimeJoin==0) {
+  	if(Eid=="") {
       dbLogin.add({
         LineID : alineID,
         LineName : aLinename,

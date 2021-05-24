@@ -147,10 +147,8 @@
   function CheckLocked() {
     dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
-   	  	//ECheckIn = 1;
-  	  	//alert("Found Data : "+alineID+" Time Join :" + ETimeJoin);   
-		Eid = doc.id,
-		ETimeJoin = (doc.data().TimeJoin)+1
+		Eid = doc.id;
+		ETimeJoin = (doc.data().TimeJoin)+1;
       });
   	});
   	alert(alineID+" -- "+ETimeJoin+ " -- " +Eid);

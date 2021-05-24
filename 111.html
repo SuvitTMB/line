@@ -118,6 +118,7 @@
     document.getElementById("isLoggedIn").append(liff.isLoggedIn())
     if(liff.isLoggedIn()) {
       getUserProfile()
+  	  CheckConnect()
     } else {
       liff.login()
     }
@@ -144,18 +145,21 @@
   }
 
 
-  var Eids = "";
-  async function CheckLocked() {
+  function CheckConnect() {
   	var ELineID = alineID;
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
     dbLogin.where('LineID','==',ELineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
-		Eids = doc.id;
+		Eid = doc.id;
 		ETimeJoin = (doc.data().TimeJoin)+1;
 		alert(Eid);
       });
-  	});
-  	alert(alineID+" -- "+ETimeJoin+ " --|" +Eids+"|--");
+  	});  	
+  }
+
+
+  async function CheckLocked() {
+  	alert(alineID+" -- "+ETimeJoin+ " --|" +Eid+"|--");
   	if(Eid!="") {
       dbLogin.doc(Eids).update({
         TimeUse : dateString,

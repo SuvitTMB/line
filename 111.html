@@ -140,9 +140,11 @@
     })
   }
 
+
   var ECheckIn = 0;
   var ETimeJoin = 0;
   function CheckLocked() {
+  	alert("CheckProfile");
     dbQuizlog.where('dbLogin','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
 		  Eid = doc.id;

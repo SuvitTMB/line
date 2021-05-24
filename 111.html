@@ -149,11 +149,11 @@
       snapshot.forEach(doc=> {
    	  	//ECheckIn = 1;
   	  	//alert("Found Data : "+alineID+" Time Join :" + ETimeJoin);   
-		Eid = doc.id;
+		Eid = doc.id,
 		ETimeJoin = (doc.data().TimeJoin)+1
       });
   	});
-  	alert(alineID+" -- "+ETimeJoin+ " -- ");
+  	alert(alineID+" -- "+ETimeJoin+ " -- " +Eid);
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
   	if(ETimeJoin==0) {
       dbLogin.add({

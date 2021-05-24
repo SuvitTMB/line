@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+  <title>LINE Retail Society</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Muli:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/ekachon.css">
+  <link rel="stylesheet" type="text/css" href="css/button.css">
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.8.1/sdk.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
+  <style type="text/css">
+    .iconweb {
+      font-size:12px;margin-left:10px;width:30%;height:130px;float: left;color:#ffff00;text-align: center;
+      cursor: pointer;padding-top:10px;
+    }
+    .iconweb:hover {
+      background-color: #0056ff; color:#ffffff;border-radius: 10px;
+    }
+  </style>
+
+</head>
+
+<body style="background-color: #e1e1e1;margin: 0;" >
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div style="display: none;"><p id="isLoggedIn"></p><p id="userId"></p><p id="pictureUrl"></p><p id="displayName"></p></div>
+
+  <div class="navbar">
+    <div>
+      <a href="job_aid.html" class="active">คู่มือช่วยจำ</a>
+      <a href="whattodo.html">ต้องทำอย่างไร</a>
+      <!--
+      <a href="carepack.html">Care Pack</a>
+      <a href="activity.html">กิจกรรม</a>
+    -->
+    </div>
+  </div>
+
+  <div class="main">
+  <header id="header">
+    <div class="container d-flex">
+      <div class="logo mr-auto">
+        <h4 class="text-light" style="padding-top:8px;"><a href="index.html"><font color="#0056ff"><font color="#009966">LINE</font> <font color="#666666">Retail</font> <font color="#0056ff">So</font><font color="#f68b1f">ciety</font></a></h4>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="index.html">คู่มือช่วยจำ</a></li>
+          <li><a href="whattodo.html">ต้องทำอย่างไร</a></li>
+          <!--
+          <li><a href="mockrun.html">Mock Run</a></li>
+          <li><a href="carepack.html">Care Pack</a></li>
+          <li><a href="activity.html">กิจกรรม</a></li>
+        -->
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<script type="text/javascript">
+  var aPicture = "";
+  var alineID = "";
+  var aLinename = "";
+  var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
+    authDomain: "retailproject-6f4fc.firebaseapp.com",
+    projectId: "retailproject-6f4fc",
+    storageBucket: "retailproject-6f4fc.appspot.com",
+    messagingSenderId: "653667385625",
+    appId: "1:653667385625:web:a5aed08500de80839f0588",
+    measurementId: "G-9SKTRHHSW9"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore().collection("logopenbook");
+
+/*
+*/
+
+  async function main() {
+    await liff.init({ liffId: "1655966947-ldWjy463" })
+    document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+    if(liff.isLoggedIn()) {
+      getUserProfile()
+    } else {
+      liff.login()
+    }
+  }
+  main()
+
+
+  async function getUserProfile() {
+    var profile = await liff.getProfile();
+    document.getElementById("pictureUrl").src = profile.pictureUrl
+    document.getElementById("userId").append(profile.userId)
+    document.getElementById("displayName").append(profile.displayName)
+    aPicture = profile.pictureUrl;
+    alineID = profile.userId;
+    aLinename = profile.displayName;
+  }
+
+  function openWindow() {
+    liff.openWindow({
+      url: "https://line.me",
+      external: true     
+    })
+  }
+
+  function ClickNumber(x) {
+      dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+      db.add({
+        LineID : alineID,
+        LineName : aLinename,
+        OpenNumber : x,
+        DateTimetoOpen : dateString,
+        LinePicture : aPicture   
+      });   
+      if(x==1) {
+        window.open('https://drive.google.com/file/d/163CDM4I2esTnhswP2AsJo1-UNc9zTtRC/view?usp=sharing');
+      } else if(x==2) {
+        window.open('https://drive.google.com/file/d/1EMPObj9HBG-SUicYnu0YgWJKul5BqU-P/view?usp=sharing');
+      } else if(x==3) {
+        window.open('https://drive.google.com/file/d/1S15WQxLwmd11jF95yDdcGMWY3h1qAWi1/view?usp=sharing');
+      } else if(x==4) {
+        window.open('https://drive.google.com/file/d/1zTzDWrAks4ivcHy5ViLIQVPO06SuHJlm/view?usp=sharing');
+      } else if(x==5) {
+        window.open('https://drive.google.com/file/d/1m_rZtUDAs_84k2BlWjRkc6mcKh3ikjgy/view?usp=sharing');
+      } else if(x==6) {
+        window.open('https://drive.google.com/file/d/1zsRKk40jHwOV8I-rBU58D40RL-LSBbQx/view?usp=sharing');
+      }  
+  }
+
+</script>
+
+  <main id="main">
+    <section id="team" class="team section-bg" style="background-color: #e1e1e1;min-height:450px;">
+      <div class="container" style="margin-top:-20px;">
+        <div style="background:#fff;">
+        <div><img src="./assets/img/Job_aid@@@.jpg" style="width:100%;"></div>
+        <div class="section-title" data-aos="fade-up"  style="background:#fff;border:4px solid #0050f0;border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
+            <center>
+              <div style="padding:15px;color:#333;">"<b>คู่มือช่วยจำ V1.1</b>" การปฏิบัติงานในแต่ละธุรกรรม<br>คลิกที่เมนูเพื่อเลือกดูข้อมูล</div>
+              <div style="margin:0px 10px 0 10px;background: #f68b1f;height:270px;border-radius: 15px;padding-top:5px;line-height:16px;">
+                <div class="iconweb" onclick="ClickNumber(1)" title="คลิกดูรายละเอียด"><div><img src="./assets/img/icon-01.png" style="width:60%;"></div><div>หมวดที่ 1<br>KYC และการ<br>ยืนยันตัวตนลูกค้า</div></div>
+
+                <div class="iconweb" onclick="ClickNumber(2)"><div><img src="./assets/img/icon-02.png" style="width:60%;"></div><div>หมวดที่ 2<br>ธุรกรรมด้านบัญชี<br>และเปิด ttb touch</div></div>
+
+                <div class="iconweb" onclick="ClickNumber(3)"><div><img src="./assets/img/icon-03.png" style="width:60%;"></div><div>หมวดที่ 3<br>การรู้จักลูกค้า<br>บน CRM</div></div>
+
+                <div class="iconweb" onclick="ClickNumber(4)"><div><img src="./assets/img/icon-04.png" style="width:60%;"></div><div>หมวดที่ 4<br>ธุรกรรมฝาก/<br>ถอน/โอน/ชำระ</div></div>
+
+                <div class="iconweb" onclick="ClickNumber(5)"><div><img src="./assets/img/icon-05.png" style="width:60%;"></div><div>หมวดที่ 5<br>ธุรกรรม<br>ด้านอื่นๆ</div></div>
+
+                <div class="iconweb" onclick="ClickNumber(6)"><div><img src="./assets/img/icon-06.png" style="width:60%;"></div><div>หมวดที่ 6<br>ธุรกรรมทาง<br>ด้านกองทุน</div></div>
+              </div>
+              <div style="padding:15px; text-align: left;font-size:11px; color:#ff0000;">หมายเหตุ: คู่มือฉบับย่อสำหรับใช้ภายในธนาคารเท่านั้น ห้ามเผยแพร่ คัดลอก หรือส่งต่อให้แก่บุคคลภายนอกโดยเด็ดขาด หากพนักงานผู้ใดฝ่าฝืน พนักงานผู้นั้นถูกพิจารณาโทษทางวินัย ตามระเบียบของธนาคารต่อไป</div>
+            </center>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main><!-- End #main -->
+  </div>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="js/home.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

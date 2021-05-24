@@ -161,7 +161,7 @@
   async function CheckLocked() {
   	alert(alineID+" -- "+ETimeJoin+ " --|" +Eid+"|--");
   	if(Eid!="") {
-      dbLogin.doc(Eids).update({
+      dbLogin.doc(Eid).update({
         TimeUse : dateString,
         TimeJoin : ETimeUse
       });

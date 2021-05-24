@@ -144,7 +144,7 @@
   var ECheckIn = 0;
   var ETimeJoin = 0;
   function CheckLocked() {
-  	alert(alineID+" -- "+ETimeJoin);
+  	alert(alineID+" -- "+ETimeJoin+ " -- "+Eid);
     dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
    	  	//ECheckIn = 1;

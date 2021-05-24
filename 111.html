@@ -161,12 +161,9 @@
 
   async function CheckLocked() {
   	alert(alineID+" -- "+ETimeJoin+ " --|" +Eid+"|--");
-  	if(EUpdate == 1) {
-      dbLogin.doc(Eid).update({
-        TimeUse : dateString,
-        TimeJoin : ETimeUse
-      });
-  	} else {
+
+    if (Eid == "") {
+      if(alineID!="" && aLinename!="") {
       dbLogin.add({
         LineID : alineID,
         LineName : aLinename,
@@ -176,6 +173,14 @@
         TimeUse : dateString,
         TimeJoin : (ETimeJoin)+1
       }); 
+      } else {
+        alert("Please add First Name bofore Save");
+      }
+    } else {
+      dbLogin.doc(Eid).update({
+        TimeUse : dateString,
+        TimeJoin : ETimeUse
+      });
   	}
   }
 

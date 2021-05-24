@@ -144,7 +144,7 @@
   }
 
   var EUpdate = 0;
-  async function CheckConnect() {
+  function CheckConnect() {
   	var ELineID = alineID;
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
     dbLogin.where('LineID','==',ELineID).get().then((snapshot)=> {
@@ -152,14 +152,14 @@
 		Eid = doc.id;
 		ETimeJoin = (doc.data().TimeJoin)+1;
 		EUpdate = 1;
-		alert(Eid);
       });
   	});  	
+	alert(Eid);
     CheckLocked();
   }
 
 
-  async function CheckLocked() {
+  function CheckLocked() {
   	alert(alineID+" -- "+ETimeJoin+ " --|" +Eid+"|--");
 
     if (Eid == "") {

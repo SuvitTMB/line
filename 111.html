@@ -145,9 +145,11 @@
 
 
   function CheckLocked() {
+  	alert(alineID);
     dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
 		Eid = doc.id;
+		alert(Eid);
 		//ETimeJoin = (doc.data().TimeJoin)+1;
       });
   	});

@@ -144,7 +144,7 @@
   function CheckLocked() {
     dbQuizlog.where('dbLogin','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
-	  	alert(alineID);
+	  	alert("Found Data : "+alineID);
       });
     });
   }

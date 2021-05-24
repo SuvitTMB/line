@@ -147,12 +147,26 @@
   	alert(alineID);
     dbQuizlog.where('dbLogin','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
-  	  alert("Found Data : "+alineID+" Time Join :" + ETimeJoin);   
-		  Eid = doc.id;
-		  ETimeJoin = (doc.data().TimeJoin)+1
+   	  	//ECheckIn = 1;
+  	  	//alert("Found Data : "+alineID+" Time Join :" + ETimeJoin);   
+		Eid = doc.id;
+		ETimeJoin = (doc.data().TimeJoin)+1
       });
-   	  ECheckIn = 1;
   	});
+  	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+  	if(ETimeJoin==1) {
+      dbLogin.add({
+        LineID : alineID,
+        LineName : aLinename,
+        //LinePicture : aPicture,
+        LoginStatus : ECheckIn,
+        TimeStart : dateString,
+        TimeUse : dateString,
+        TimeJoin : (ETimeJoin)+1
+      }); 
+  	} else {
+
+  	}
   }
 
 

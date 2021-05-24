@@ -144,7 +144,6 @@
   var ECheckIn = 0;
   var ETimeJoin = 0;
   function CheckLocked() {
-  	alert(alineID);
     dbQuizlog.where('dbLogin','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
    	  	//ECheckIn = 1;
@@ -153,6 +152,7 @@
 		ETimeJoin = (doc.data().TimeJoin)+1
       });
   	});
+  	alert(alineID+"--"+ETimeJoin);
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
   	if(ETimeJoin==0) {
       dbLogin.add({

@@ -146,6 +146,7 @@
   var EUpdate = 0;
   async function CheckConnect() {
   	var ELineID = alineID;
+	alert(alineID);
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
     dbLogin.where('LineID','==',ELineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {

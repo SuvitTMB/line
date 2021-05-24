@@ -145,6 +145,14 @@
   }
 
 
+/*
+    dbQuizlog.where('CheckQuizID','==',QuizGameID).get().then((snapshot)=> {
+      snapshot.forEach(doc=> {
+        zCheckID = 1;
+        alert("คุณได้ทำชุดทดสอบนี้ไปแล้ว");
+      });
+    });
+*/
 
   function ClickNumber(x) {
       dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });

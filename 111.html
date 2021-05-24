@@ -144,7 +144,7 @@
   var ECheckIn = 0;
   var ETimeJoin = 0;
   function CheckLocked() {
-  	alert("CheckProfile");
+  	alert(alineID);
     dbQuizlog.where('dbLogin','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
   	  alert("Found Data : "+alineID+" Time Join :" + ETimeJoin);   

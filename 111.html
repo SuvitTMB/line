@@ -148,10 +148,10 @@
     dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
 		Eid = doc.id;
-		ETimeJoin = (doc.data().TimeJoin)+1;
+		//ETimeJoin = (doc.data().TimeJoin)+1;
       });
   	});
-  	alert(alineID+" -- "+ETimeJoin+ " -- " +Eid);
+  	alert(alineID+" -- "+ETimeJoin+ " --|" +Eid+"|--");
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
   	if(ETimeJoin==0) {
       dbLogin.add({

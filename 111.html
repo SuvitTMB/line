@@ -91,6 +91,8 @@
   var aPicture = "";
   var alineID = "";
   var aLinename = "";
+  var ECheckIn = 0;
+  var ETimeJoin = 0;
   var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 
   var firebaseConfig = {
@@ -141,8 +143,6 @@
   }
 
 
-  var ECheckIn = 0;
-  var ETimeJoin = 0;
   function CheckLocked() {
   	alert(alineID+" -- "+ETimeJoin+ " -- "+Eid);
     dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {

@@ -147,11 +147,11 @@
   	alert("CheckProfile");
     dbQuizlog.where('dbLogin','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
+  	  alert("Found Data : "+alineID+" Time Join :" + ETimeJoin);   
 		  Eid = doc.id;
 		  ETimeJoin = (doc.data().TimeJoin)+1
       });
    	  ECheckIn = 1;
-  	  alert("Found Data : "+alineID+" Time Join :" + ETimeJoin);   
   	});
   }
 

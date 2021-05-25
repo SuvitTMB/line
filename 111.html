@@ -135,7 +135,7 @@
     aPicture = profile.pictureUrl;
     alineID = profile.userId;
     aLinename = profile.displayName;
-    CheckConnect(alineID);
+    CheckConnect();
   }
 
   function openWindow() {
@@ -146,21 +146,47 @@
   }
 
 
-  var SUpdate = 0;
-  function CheckConnect(x) {
-	alert(x);
-    dbLogin.where('LineIDuser','==',x).get().then((snapshot)=> {
+  var LineIDuser = ""0"";
+  function CheckConnect() {
+  	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+    dbLogin.where('LineIDuser','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
 		Sid = doc.id;
+		LineIDuser = doc.data().LineIDuser;
 		STimeJoin = (doc.data().TimeJoin)+1;
 		//SUpdate = 1;
       });
   	});  	
-    CheckLocked();
-	alert(Sid);
+    //CheckLocked();
+	alert(LineIDuser +"---"+Sid);
+
+  	//alert(alineID+" -- "+STimeJoin+ " --|" +Sid+"|--");
+
+    if (Sid == "") {
+      if(alineID!="" && aLinename!="") {
+      dbLogin.add({
+        LineID : alineID,
+        LineIDuser : alineID,
+        LineName : aLinename,
+        LinePicture : aPicture,
+        LoginStatus : SCheckIn,
+        TimeStart : dateString,
+        TimeUse : dateString,
+        TimeJoin : (STimeJoin)+1 
+      }); 
+      } else {
+        alert("Please Login");
+      }
+    } else {
+      dbLogin.doc(Sid).update({
+        TimeUse : dateString,
+        TimeJoin : STimeJoin
+      });
+  	}
+
   }
 
-
+/*
   async function CheckLocked() {
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
   	alert(alineID+" -- "+STimeJoin+ " --|" +Sid+"|--");
@@ -187,7 +213,7 @@
       });
   	}
   }
-
+*/
 
 /*
 */

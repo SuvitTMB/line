@@ -149,7 +149,7 @@
   var SUpdate = 0;
   async function CheckConnect(x) {
 	alert(x);
-    dbLogin.where('LineID','==',x).get().then((snapshot)=> {
+    dbLogin.where('LineIDuser','==',x).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
 		Sid = doc.id;
 		STimeJoin = (doc.data().TimeJoin)+1;
@@ -161,7 +161,7 @@
   }
 
 
-  function CheckLocked() {
+  async function CheckLocked() {
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
   	alert(alineID+" -- "+STimeJoin+ " --|" +Sid+"|--");
 
@@ -169,6 +169,7 @@
       if(alineID!="" && aLinename!="") {
       dbLogin.add({
         LineID : alineID,
+        LineIDuser : alineID,
         LineName : aLinename,
         LinePicture : aPicture,
         LoginStatus : SCheckIn,

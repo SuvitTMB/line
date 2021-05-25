@@ -147,7 +147,7 @@
 
 
   var SUpdate = 0;
-  function CheckConnect(x) {
+  async function CheckConnect(x) {
 	alert(x);
     dbLogin.where('LineID','==',x).get().then((snapshot)=> {
       snapshot.forEach(doc=> {

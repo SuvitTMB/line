@@ -92,8 +92,9 @@
   var alineID = "";
   var aLinename = "";
   var Eid = "";
-  var ECheckIn = 0;
-  var ETimeJoin = 0;
+  var Sid = "";
+  var SCheckIn = 0;
+  var STimeJoin = 0;
   var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 
   var firebaseConfig = {
@@ -196,27 +197,26 @@
 
     dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
-		Eid = doc.id;
-		ETimeJoin = (doc.data().TimeJoin)+1;
-		EUpdate = 1;
+		Sid = doc.id;
+		STimeJoin = (doc.data().TimeJoin)+1;
+		SUpdate = 1;
       });
   	});
-  	ETimeJoin = 1;
-  	alert(Eid+"---"+ETimeJoin);  	
-  	if(Eid=="") {
+  	alert(Sid+"---"+STimeJoin);  	
+  	if(Sid=="") {
       dbLogin.add({
         LineID : alineID,
         LineName : aLinename,
         LinePicture : aPicture,
-        LoginStatus : ECheckIn,
+        LoginStatus : SCheckIn,
         TimeStart : dateString,
         TimeUse : dateString,
-        TimeJoin : (ETimeJoin)+1
+        TimeJoin : (STimeJoin)+1
       });  		
   	} else {
-      dbLogin.doc(Eid).update({
+      dbLogin.doc(Sid).update({
         TimeUse : dateString,
-        TimeJoin : ETimeUse
+        TimeJoin : STimeUse
       });
   	}
 

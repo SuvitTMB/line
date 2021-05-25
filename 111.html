@@ -133,7 +133,7 @@
     aPicture = profile.pictureUrl;
     alineID = profile.userId;
     aLinename = profile.displayName;
-    CheckConnect();
+    //CheckConnect();
   }
 
   function openWindow() {
@@ -142,6 +142,7 @@
       external: true     
     })
   }
+
 
   var EUpdate = 0;
   async function CheckConnect() {
@@ -190,7 +191,22 @@
 */
 
   function ClickNumber(x) {
-      dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+    dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+
+
+    dbLogin.where('LineID','==',ELineID).get().then((snapshot)=> {
+      snapshot.forEach(doc=> {
+		Eid = doc.id;
+		ETimeJoin = (doc.data().TimeJoin)+1;
+		EUpdate = 1;
+      });
+  	});
+  	alert(Eid+"---"+ETimeJoin);  	
+
+
+
+
+
       db.add({
         LineID : alineID,
         LineName : aLinename,
@@ -212,8 +228,8 @@
         window.open('https://drive.google.com/file/d/1zsRKk40jHwOV8I-rBU58D40RL-LSBbQx/view?usp=sharing');
       }  
   }
-
 </script>
+
 
   <main id="main">
     <section id="team" class="team section-bg" style="background-color: #e1e1e1;min-height:450px;">

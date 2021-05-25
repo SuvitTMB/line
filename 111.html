@@ -146,7 +146,7 @@
 
 
   var EUpdate = 0;
-  async function CheckConnect() {
+  function CheckConnect() {
 	//alert(alineID);
     dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
@@ -155,7 +155,7 @@
 		//SUpdate = 1;
       });
   	});  	
-	//alert(Sid);
+	alert(Sid);
     CheckLocked();
   }
 

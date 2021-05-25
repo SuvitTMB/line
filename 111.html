@@ -192,17 +192,19 @@
 */
 
   function ClickNumber(x) {
+  	var SLineID = "";
     dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 
 
     dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
 		Sid = doc.id;
+		SLineID = doc.data().LineID;
 		STimeJoin = (doc.data().TimeJoin)+1;
 		SUpdate = 1;
       });
   	});
-  	alert(Sid+"---"+alineID);  	
+  	alert(Sid+"---"+alineID+"="+SLineID);  	
   	if(Sid=="") {
       dbLogin.add({
         LineID : alineID,

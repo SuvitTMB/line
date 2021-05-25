@@ -194,7 +194,7 @@
     dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 
 
-    dbLogin.where('LineID','==',ELineID).get().then((snapshot)=> {
+    dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
 		Eid = doc.id;
 		ETimeJoin = (doc.data().TimeJoin)+1;

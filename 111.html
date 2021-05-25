@@ -146,7 +146,7 @@
   }
 
 
-  var LineIDuser = ""0"";
+  var LineIDuser = "";
   function CheckConnect() {
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
     dbLogin.where('LineIDuser','==',alineID).get().then((snapshot)=> {

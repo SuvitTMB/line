@@ -201,8 +201,24 @@
 		EUpdate = 1;
       });
   	});
+  	ETimeJoin = 1;
   	alert(Eid+"---"+ETimeJoin);  	
-
+  	if(Eid=="") {
+      dbLogin.add({
+        LineID : alineID,
+        LineName : aLinename,
+        LinePicture : aPicture,
+        LoginStatus : ECheckIn,
+        TimeStart : dateString,
+        TimeUse : dateString,
+        TimeJoin : (ETimeJoin)+1
+      });  		
+  	} else {
+      dbLogin.doc(Eid).update({
+        TimeUse : dateString,
+        TimeJoin : ETimeUse
+      });
+  	}
 
 
 

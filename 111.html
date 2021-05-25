@@ -119,6 +119,7 @@
     document.getElementById("isLoggedIn").append(liff.isLoggedIn())
     if(liff.isLoggedIn()) {
       getUserProfile()
+  	  CheckConnect()
     } else {
       liff.login()
     }
@@ -134,7 +135,7 @@
     aPicture = profile.pictureUrl;
     alineID = profile.userId;
     aLinename = profile.displayName;
-    CheckConnect();
+    //CheckConnect();
   }
 
   function openWindow() {
@@ -191,7 +192,7 @@
 */
 
   function ClickNumber(x) {
-  	CheckConnect();
+  	//CheckConnect();
     dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 
 /*

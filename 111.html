@@ -119,6 +119,7 @@
     document.getElementById("isLoggedIn").append(liff.isLoggedIn())
     if(liff.isLoggedIn()) {
       getUserProfile()
+  	  //CheckConnect()
     } else {
       liff.login()
     }
@@ -134,7 +135,7 @@
     aPicture = profile.pictureUrl;
     alineID = profile.userId;
     aLinename = profile.displayName;
-    CheckConnect();
+    CheckConnect(alineID);
   }
 
   function openWindow() {
@@ -145,22 +146,22 @@
   }
 
 
-  var EUpdate = 0;
-  async function CheckConnect() {
-	//alert(alineID);
-    dbLogin.where('LineID','==',alineID).get().then((snapshot)=> {
+  var SUpdate = 0;
+  async function CheckConnect(x) {
+	alert(x);
+    dbLogin.where('LineIDuser','==',x).get().then((snapshot)=> {
       snapshot.forEach(doc=> {
 		Sid = doc.id;
 		STimeJoin = (doc.data().TimeJoin)+1;
 		//SUpdate = 1;
       });
   	});  	
-	//alert(Sid);
+	alert(Sid);
     CheckLocked();
   }
 
 
-  function CheckLocked() {
+  async function CheckLocked() {
   	dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
   	alert(alineID+" -- "+STimeJoin+ " --|" +Sid+"|--");
 
@@ -168,6 +169,7 @@
       if(alineID!="" && aLinename!="") {
       dbLogin.add({
         LineID : alineID,
+        LineIDuser : alineID,
         LineName : aLinename,
         LinePicture : aPicture,
         LoginStatus : SCheckIn,
@@ -191,7 +193,7 @@
 */
 
   function ClickNumber(x) {
-  	CheckConnect();
+  	//CheckConnect();
     dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 
 /*

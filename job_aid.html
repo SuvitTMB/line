@@ -148,6 +148,7 @@
   }
 
   function ClickNumber(x) {
+      alert(aLinename);   
       dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
       db.add({
         LineID : alineID,
@@ -156,7 +157,6 @@
         DateTimetoOpen : dateString,
         LinePicture : aPicture   
       });
-      alert(aLinename);   
       if(x==1) {
         window.open('https://drive.google.com/file/d/163CDM4I2esTnhswP2AsJo1-UNc9zTtRC/view?usp=sharing');
       } else if(x==2) {
@@ -169,6 +169,7 @@
         window.open('https://drive.google.com/file/d/1m_rZtUDAs_84k2BlWjRkc6mcKh3ikjgy/view?usp=sharing');
       } else if(x==6) {
         window.open('https://drive.google.com/file/d/1zsRKk40jHwOV8I-rBU58D40RL-LSBbQx/view?usp=sharing');
+/*
       } else if(x==7) {
         window.open('https://drive.google.com/file/d/1ZPBc3hG6Z9RffxAc9EG0X-LasDBoBPA-/view?usp=sharing');
       } else if(x==8) {
@@ -183,6 +184,7 @@
         window.open('https://drive.google.com/file/d/1Qsyf1aACukwVhi3D59o6aEIb6iTMVKGt/view?usp=sharing');
       } else if(x==13) {
         window.open('https://drive.google.com/file/d/1jxY0aAqIVaaFGqvMyvXSApxelkbZ5f9R/view?usp=sharing');
+*/
       }  
   }
 

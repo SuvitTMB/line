@@ -150,11 +150,11 @@
   function ClickNumber(x) {
       dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
       db.add({
-        //LineID : alineID,
-        //LineName : aLinename,
-        //OpenNumber : x
-        DateTimetoOpen : dateString
-        //LinePicture : aPicture   
+        LineID : alineID,
+        LineName : aLinename,
+        OpenNumber : x,
+        DateTimetoOpen : dateString,
+        LinePicture : aPicture   
       });
         alert(x);
       if(x==1) {

@@ -137,7 +137,7 @@
     aPicture = profile.pictureUrl;
     alineID = profile.userId;
     aLinename = profile.displayName;
-    alert(aLinename);
+    //alert(aLinename);
   }
 
   function openWindow() {
@@ -155,7 +155,8 @@
         OpenNumber : x,
         DateTimetoOpen : dateString,
         LinePicture : aPicture   
-      });   
+      });
+      alert(aLinename);   
       if(x==1) {
         window.open('https://drive.google.com/file/d/163CDM4I2esTnhswP2AsJo1-UNc9zTtRC/view?usp=sharing');
       } else if(x==2) {
